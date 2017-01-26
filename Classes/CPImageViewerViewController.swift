@@ -47,27 +47,17 @@ open class CPImageViewerViewController: UIViewController, UIScrollViewDelegate, 
         modalPresentationStyle = .overFullScreen
         modalPresentationCapturesStatusBarAppearance = true
     }
-
+    
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
     open override func viewDidLoad() {
         super.viewDidLoad()
-        
-       
-        let bgImage = UIImage(named: "blurred_background_image")
-        
-        
-        //view.backgroundColor = UIColor(patternImage: UIImage(named: "blurre_background_image.jpg")!)
-        if let backgroundImage = bgImage {
-             view.backgroundColor = UIColor(patternImage: backgroundImage)
-        }
-       
-        
+        view.backgroundColor = UIColor(white: 0.3, alpha: 0.8)
         scrollView = UIScrollView()
-//        scrollView.backgroundColor = UIColor(white: 0.5, alpha: 0.8)
-         scrollView.backgroundColor = UIColor.clear
+        scrollView.backgroundColor = UIColor(white: 0.5, alpha: 0.8)
+        scrollView.backgroundColor = UIColor.clear
         scrollView.maximumZoomScale = 5.0
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
@@ -93,7 +83,7 @@ open class CPImageViewerViewController: UIViewController, UIScrollViewDelegate, 
             navigationItem.rightBarButtonItem = rightItem
         }
     }
-
+    
     open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -141,7 +131,7 @@ open class CPImageViewerViewController: UIViewController, UIScrollViewDelegate, 
         let originY = max(0, (viewHeight - imageHeight)/2)
         animationImageView.frame.origin = CGPoint(x: originX, y: originY)
     }
-
+    
     //MARK: - Button Action
     @objc fileprivate func rightBarItemAction() {
         navigationController!.popViewController(animated: true)
