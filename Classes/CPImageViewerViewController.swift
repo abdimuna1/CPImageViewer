@@ -55,10 +55,19 @@ open class CPImageViewerViewController: UIViewController, UIScrollViewDelegate, 
     open override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.black
+       
+        let bgImage = UIImage(named: "blurred_background_image")
+        
+        
+        //view.backgroundColor = UIColor(patternImage: UIImage(named: "blurre_background_image.jpg")!)
+        if let backgroundImage = bgImage {
+             view.backgroundColor = UIColor(patternImage: backgroundImage)
+        }
+       
         
         scrollView = UIScrollView()
-        scrollView.backgroundColor = UIColor.black
+//        scrollView.backgroundColor = UIColor(white: 0.5, alpha: 0.8)
+         scrollView.backgroundColor = UIColor.clear
         scrollView.maximumZoomScale = 5.0
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
@@ -115,8 +124,9 @@ open class CPImageViewerViewController: UIViewController, UIScrollViewDelegate, 
         let viewHeight = scrollView.frame.size.height
         let imageWidth = aImage.size.width
         let imageHeight = aImage.size.height
+        let heighOffset: Float = 200.0
         let newWidth = min(viewWidth, CGFloat(floorf(Float(imageWidth * (viewHeight / imageHeight)))))
-        let newHeight = min(viewHeight, CGFloat(floorf(Float(imageHeight * (viewWidth / imageWidth)))))
+        let newHeight = min(viewHeight, CGFloat(heighOffset + floorf(Float(imageHeight * (viewWidth / imageWidth)))))
         
         return CGRect(x: (viewWidth - newWidth)/2, y: (viewHeight - newHeight)/2, width: newWidth, height: newHeight)
     }
